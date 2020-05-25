@@ -1,0 +1,127 @@
+html,
+body {
+  background-color: $dark;
+  overflow-x: hidden;
+  word-break: break-word;
+  
+  &.menu-open {
+    position: fixed;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+  }
+}
+
+p{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.img-responsive{
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+.text-center{
+    text-align: center!important;;
+}
+.text-left{
+    text-align: left!important;;
+}
+.text-right{
+    text-align: right!important;;
+}
+.text-white {
+  color: $white!important;
+}
+.m-auto{
+    @include push--auto;
+}
+.container{
+    width: 100%;
+    max-width: 1100px;
+    @include push--auto;
+}
+
+/** Site base classes **/
+
+@for $i from 1 through 6 {
+  h#{$i}.section-title {
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+      
+      @include font-source-sans( ( $size-middle + 4px ) - $i*2px, inherit, $weight-normal, 1.1, $helper-font);
+      
+      @if $i = 1 {
+        font-size: size-big - $i*10px
+      }
+    
+      @media screen and (max-width: 768px){
+        font-size: ( $size-middler + 4px ) - $i*2px;
+      }
+  }
+}
+
+.section-description {
+  max-width: 800px;
+  
+  @include font-source-sans($size-regular, $white, $weight-normal, 2, $main-font);
+  
+  @media screen and (max-width: 800px){
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}
+
+
+@media screen and ( min-width: 1500px ){
+    .container{
+        max-width: 1422px;
+    }
+}
+@media screen and ( max-width: 1024px ){
+    .container{
+        padding: 0 15px;
+    }
+}
+section{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background-color: $dark;
+    padding: 80px 0;
+    
+    &.animation * {
+      opacity:0;
+      transition: 1s; 
+      animation: show 1s 1;
+      animation-fill-mode: forwards;
+      animation-delay: 1s;
+    }
+    
+    @include push--auto;
+  
+    @media screen and (min-width: 1200px) {
+      &:first-child {
+        padding-top: 200px;    
+      }
+    }
+}
+@media screen and ( min-width: 1200px ){
+  section {
+    min-height: 100vh;
+    padding: 120px 0;
+  }
+}
+
+@keyframes show{
+  0%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

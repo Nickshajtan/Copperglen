@@ -1,0 +1,67 @@
+.hero-block {
+  background-attachment: fixed;
+  padding-top: 40px;
+  
+  @include bg--auto(lighten($dark, 45%), url(../img/hero-bg.png), cover, no-repeat, multiply);
+  
+  &__text-part {
+    
+    &::after {
+      content: "";
+      display: block;
+      background-image: url(../img/hero-bottom.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      width: 466px;
+      height: 42px;
+      margin-top: 30px;
+      
+      @media screen and (max-width: 470px){
+        width: 90%;
+      }
+    }
+    
+    &::before {
+      content: "";
+      display: block;
+      background-image: url(../img/hero-top.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      width: 335px;
+      height: 65px;
+      margin-bottom: 20px;
+      
+      @media screen and (max-width: 350px){
+        width: 90%;
+      }
+    }
+  }
+}
+  
+@media screen and ( min-width: 1025px ){
+  .hero-block {
+    padding: 100px 0;
+    &__text-part {
+       @for $i from 1 through 6 {
+        h#{$i} {
+            @include font-source-sans($size-big - $i*20px, $white, $weight-normal, 1.1, $helper-font);
+          }
+        }
+    }
+  }
+}
+
+@media screen and ( min-width: 768px ){
+   .hero-block {
+      padding: 100px 0 60px 0;
+      &__text-part {
+        padding: 0 20px;
+        &::after, 
+        &::before {
+          max-width: 100%;
+        }
+      }
+    }
+}

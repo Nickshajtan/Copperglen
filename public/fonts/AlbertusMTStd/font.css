@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'AlbertusMTStd';
+  src: url('AlbertusMTStd.eot');
+  src: url('AlbertusMTStd.eot?#iefix') format('embedded-opentype'),
+       url('AlbertusMTStd.ttf') format('truetype'),
+       url('AlbertusMTStd.woff') format('woff'),
+       url('AlbertusMTStd.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+

@@ -1,0 +1,232 @@
+.masthead {
+  position: fixed;
+  padding: 0;
+  width: 100%;
+  padding-top: 15px;
+  z-index: 10;
+  transition: 0.2s;
+  
+  @media screen and (max-width: 1200px) {
+    padding-top: 0;
+    flex-direction: column;
+    background-color: transparentize(darken($dark, 50%), 0.2);
+  }
+  
+  &.fixed {
+    background-color: transparentize(darken($dark, 50%), 0.4);   
+    border-bottom: 1px solid $beuque;
+    
+    @media screen and (max-width: 1200px) {
+      min-height: 55px;
+      background-color: transparentize(darken($dark, 50%), 0.2); 
+    }
+  }
+  
+  &__header-nav {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 224px 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: minmax(40px, auto);
+    grid-template-areas: "left-menu logo right-menu";
+  
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "logo" "left-menu" "right-menu";
+      display: none;
+    }
+  }
+  
+  
+  &__menu {
+    padding:0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    
+    &-left,
+    &-right {
+      padding-top: 25px;
+      
+      @media screen and (max-width: 1200px) {
+        padding-top: 0;
+      }
+    }
+    
+    &-left {
+      padding-right: 20px;
+      grid-area: left-menu;
+      
+      @media screen and (min-width: 1200px) {
+        padding-right: 60px;
+      }
+      
+      @media screen and (max-width: 1200px) {
+        padding-right: 0;
+        flex-direction: column;
+      }
+    }
+    
+    &-center {
+      grid-area: logo;
+      
+      @media screen and (max-width: 1200px) {
+        margin-bottom: 20px;
+      }
+    }
+    
+    &-right {
+      padding-left: 20px;
+      grid-area: right-menu;
+      
+      @media screen and (min-width: 1200px) {
+        padding-left: 60px;
+      }
+      
+      @media screen and (max-width: 1200px) {
+        padding-left: 0;
+        flex-direction: column;
+      }
+    }
+    
+    li {
+      padding: 0 15px;
+      
+      &.brand {
+        padding: 0;
+        @include push--auto;
+        
+        a {
+          display: block;
+          width: 100%;
+        }
+      }
+      
+      &:first-child {
+        padding-left: 0;
+        
+        @media screen and (max-width: 1200px) {
+          padding-left: 15px;
+        }
+      }
+      
+      &:last-child {
+        padding-right: 0;
+        
+        @media screen and (max-width: 1200px) {
+          padding-right: 15px;
+        }
+      }
+      
+      a {
+        text-transform: uppercase;
+        transition: all 0.5s;
+        
+        &,
+        &:visited {
+          @include font-source-sans($size-regular - 4px, $white, $weight-normal, 1, $helper-font);
+        }
+        
+        &:hover,
+        &:focus {
+          color: $beuque;
+        }
+      }
+      
+      img{
+        display: block;
+        object-fit: contain;
+        height: auto;
+        width: 100%;
+        max-width: 224px;
+        max-height: 112px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        
+        @include push--auto;
+      }
+    }
+  }
+}
+
+
+.nav-trigger {
+    position: absolute;
+    z-index: 15;
+    transition: 0.2s;
+    clip: rect(0, 0, 0, 0);
+
+    &:checked + label {
+      transition: 0.2s;
+
+      &::after,
+      &::before {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        right: 5px;
+        bottom: 5px;
+      }
+
+      &::after {
+        content: '';
+        top: 5px;
+        transform: rotate(45deg);
+      }
+
+      &::before {
+        content: '';
+        top: 10px;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &:checked ~ .masthead {
+      display: flex;
+      min-height: 100vh;
+      padding-top: 15px;
+      transition: 0.2s;
+      box-shadow: 0 0 10px 2px transparentize($white, 0.65);
+    }
+    
+    &:checked ~ .masthead .masthead__header-nav {
+      display: grid;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+  label[for="nav-trigger"] {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 15;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid transparentize($white, 0.65);
+    border-radius: 5px;
+    padding: 5px;
+
+    &::after,
+    &::before {
+      transition: 0.2s;
+      border-radius: 5px;
+      background-color: $white;
+      display: block;
+      height: 2px;
+    }
+
+    &::after {
+      content: '';
+      width: 80%;
+      margin-top: 9px;
+    }
+
+    &::before {
+      content: '';
+      width: 100%;
+      margin-top: 2px;
+    }
+  }
+}

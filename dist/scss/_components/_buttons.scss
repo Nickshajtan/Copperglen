@@ -1,0 +1,26 @@
+.btn {
+  &-contact {
+    margin-top: 70px;
+
+    &,
+    a {
+      padding: 30px 70px;
+      border: 1px solid $helper;
+      border-radius: 40px;
+      text-transform: uppercase;
+      transition: 0.3s;
+      background-color: $transparent;
+
+      @include font-source-sans($size-regular - 4px, $helper, $weight-normal, 1, $main-font);
+
+      &:hover,
+      &:focus,
+      &:visited {
+        background-color: $helper;
+        color: $dark;
+        outline: none;
+        box-shadow: 0 3px 5px $white;
+      }
+    }
+  }
+}

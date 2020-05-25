@@ -1,0 +1,47 @@
+.story {
+  background-attachment: fixed;
+  
+  @include bg--auto(lighten($dark, 45%), ( linear-gradient(to right, rgba(3, 3, 3, 0.9), rgba(0, 0, 0, 0) ), url("../img/story-bg.png") ), cover, no-repeat, multiply);
+
+  .container {
+    flex-wrap: wrap;
+  }
+  
+  &__title {
+    width: 100%;
+    padding-bottom: 40px;
+    
+    @include font-source-sans($size-middle, $white, $weight-light, 1, $helper-font);
+    
+    @media screen and (max-width: 768px){
+      padding: 0 15px;
+    }
+  }
+  
+  &__description {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-right: 20px;
+    
+    @include font-source-sans($size-regular, $white, $weight-normal, 2, $main-font);
+    
+    @media screen and (max-width: 768px){
+      padding: 0 15px;
+    }
+    
+    &.item-first {
+      flex: 1 1 10rem;
+    }
+    &.item-second {
+      flex: 1 1 10rem;
+    }
+  }
+}
+
+@media screen and ( min-width: 1200px ){
+  .story {
+    margin-top: -160px;
+    padding-top: 220px;
+    padding-bottom: 150px;
+  } 
+}
