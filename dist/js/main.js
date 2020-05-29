@@ -5,15 +5,18 @@ const sections = document.querySelectorAll('section');
 
 window.onscroll = function() {
   fixedMenu( header );
-  sectionAnimate();
+  if( window.innerWidth > 1200 ) {
+    sectionAnimate();
+  }
 }
 
-try {
-  document.getElementById("nav-trigger").onclick = function() {
-    openMenu();
-  };
 
-  function openMenu() {
+document.getElementById("nav-trigger").onclick = function() {
+  openMenu( header );
+};
+
+function openMenu( header ) {
+  try {
     if( !header ) {
       throw new Error(header + ' is not DOM element');
     }
@@ -22,9 +25,33 @@ try {
       document.querySelector("body").classList.toggle("menu-open");
     }
   }
+  catch(e){
+    console.log('Problem with burger menu js: ' + e);
+  }
 }
-catch(e){
-  console.log('Problem with burger menu js: ' + e);
+
+document.addEventListener("DOMContentLoaded", closeMenu);
+function closeMenu() {
+  try{
+    if( !header ) {
+      throw new Error(header + ' is not DOM element');
+    }
+    if( window.innerWidth <= 1200 ) {
+          let links = header.querySelectorAll('a');
+          if( links ) {
+            for (let link of links) {
+                link.addEventListener('click', function (e) {
+                  header.classList.remove("show");
+                  document.querySelector("body").classList.remove("menu-open");
+                  document.getElementById("nav-trigger").checked = false;
+                }); 
+            }
+          }
+    }
+  }
+  catch(e){
+    console.log('Problem with close burger menu js: ' + e);
+  } 
 }
 
 function fixedMenu( element ) { 
@@ -46,9 +73,9 @@ function fixedMenu( element ) {
   }
 }
 
-try {
-  document.addEventListener("DOMContentLoaded", smoothLinks);
-  function smoothLinks(){
+document.addEventListener("DOMContentLoaded", smoothLinks);
+function smoothLinks(){
+  try {
     const anchors = document.querySelectorAll('a.scroll-to');
     if( !anchors ) {
       throw new Error(anchors + ' is not DOM element');
@@ -68,9 +95,9 @@ try {
       }
     }
   }
-}
-catch(e){
-  console.log('Problem with smooth scrolling js: ' + e);
+  catch(e){
+    console.log('Problem with smooth scrolling js: ' + e);
+  }
 }
 
 function sectionAnimate() {
@@ -97,9 +124,9 @@ function sectionAnimate() {
   }
 }
 
-try{
-  document.addEventListener("DOMContentLoaded", googleClick);
-  function googleClick() {
+document.addEventListener("DOMContentLoaded", googleClick);
+function googleClick() {
+  try{
     let btns = document.getElementsByClassName('btn-contact');
     if( btns ) {
       for (let btn of btns) {
@@ -115,7 +142,7 @@ try{
       throw new Error(btns + ' is not DOM element');
     }
   }
-}
-catch(e){
-  console.log('Problem with Google form click js: ' + e);
+  catch(e){
+    console.log('Problem with Google form click js: ' + e);
+  }
 }
